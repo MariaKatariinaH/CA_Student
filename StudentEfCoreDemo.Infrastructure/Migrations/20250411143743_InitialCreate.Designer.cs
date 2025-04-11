@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudentEfCoreDemo.Data;
+using StudentEfCoreDemo.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace StudentEfCoreDemo.Migrations
+namespace StudentEfCoreDemo.Infrastructure.Migrations
 {
-    [DbContext(typeof(StudentContext))]
-    [Migration("20250129091014_Initial")]
-    partial class Initial
+    [DbContext(typeof(StudentDbContext))]
+    [Migration("20250411143743_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.1")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("StudentEfCoreDemo.Models.Student", b =>
+            modelBuilder.Entity("StudentEfCoreDemo.Domain.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,11 +35,7 @@ namespace StudentEfCoreDemo.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
